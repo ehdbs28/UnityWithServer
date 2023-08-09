@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/MessageBox/MessageTemplete.uss?fileID=7433441132597879392&amp;guid=e072301ab4f5c422e976521e8e06d717&amp;type=3#MessageTemplete" />
+    <ui:VisualElement name="MessageBox" class="msg">
+        <ui:VisualElement name="icon" style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=2402f5eb8665f4e9396f28a5e11b57fb&amp;type=3#check@2x&apos;); margin-right: 10px;" />
+        <ui:Label text="This is Label Message" display-tooltip-when-elided="true" name="message" style="flex-grow: 1; color: rgba(255, 255, 255, 255); -unity-font-style: bold; font-size: 16px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,25 @@
+.msg {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 255);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    translate: 0 0;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    opacity: 1;
+}
+
+.msg.off {
+    translate: 110% 0;
+    opacity: 0.3;
+}

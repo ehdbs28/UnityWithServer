@@ -4,13 +4,18 @@ import {load, CheerioAPI} from "cheerio";
 import iconv from "iconv-lite";
 import { Pool } from "./DB";
 import { RowDataPacket } from "mysql2/promise";
+import { MessageType, ResponseMSG } from "./Types";
 
 // 익스프레스 라우터 하나 생성
 export const lunchRouter :Router = Router();
 
 lunchRouter.get("/lunch", async (req :Request, res :Response) => {
-    let date :string = req.query.date as string;
+    let date :string | undefined = req.query.date as string | undefined;
     // const date :string = "20230703";
+
+    if(date == undefined){
+        date = "20230704";
+    }
 
     // DB에 데이터가 있는지 확인
     let result = await GetDataFromDB(date);
@@ -18,7 +23,9 @@ lunchRouter.get("/lunch", async (req :Request, res :Response) => {
     if(result != null){
         // DB 정보를 보내주면 된다.
         let json = { date, menus: JSON.parse(result[0].menu) };
-        res.render("lunch", json);
+        //res.render("lunch", json);
+        let resPacket :ResponseMSG = { type: MessageType.SUCCESS, message: JSON.stringify(json) };
+        res.json(resPacket);
         return;
     }
 
@@ -38,10 +45,10 @@ lunchRouter.get("/lunch", async (req :Request, res :Response) => {
     let menus :string[] = text.split("\n").map(x => x.replace(/[0-9]+\./g, "")).filter(x => x.length > 0);
 
     const json = { date, menus };
+    // res.render("lunch", json);
 
-    // res.json({id: 1, text: menus});
-    // ejs, pug, nunjucks
-    res.render("lunch", json);
+    let resPacket :ResponseMSG = { type: MessageType.SUCCESS, message: JSON.stringify(json) };
+    res.json(resPacket);
 
     await Pool.execute("INSERT INTO lunch(date, menu) VALUES(?, ?)", [date, JSON.stringify(menus)]);
 });
