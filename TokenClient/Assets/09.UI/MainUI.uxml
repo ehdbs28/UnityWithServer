@@ -6,8 +6,17 @@
             <ui:Button text="점심메뉴" display-tooltip-when-elided="true" name="LunchBtn" class="btn" />
             <ui:Button text="인벤토리" display-tooltip-when-elided="true" name="InventoryBtn" class="btn" />
             <ui:Button text="로그인" display-tooltip-when-elided="true" name="LoginBtn" class="btn" />
+            <ui:VisualElement name="UserInfoPanel" style="flex-direction: row; transition-property: width; transition-duration: 0.3s; transform-origin: right; overflow: hidden;">
+                <ui:Button text="유저 정보" display-tooltip-when-elided="true" name="infoBtn" class="btn" />
+                <ui:Button text="로그아웃" display-tooltip-when-elided="true" name="logoutBtn" class="btn red" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="justify-content: center; align-items: center; flex-grow: 1;" />
     </ui:VisualElement>
     <ui:VisualElement name="MessageContainer" style="position: absolute; bottom: 0; right: 0;" />
+    <ui:VisualElement name="UserPopOver" style="width: 120px; position: absolute; left: 0; top: 0; scale: 1 0; transform-origin: top; transition-property: scale; transition-duration: 0.2s; background-color: rgba(255, 255, 255, 0.78); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgba(80, 115, 214, 0.78); border-right-color: rgba(80, 115, 214, 0.78); border-top-color: rgba(80, 115, 214, 0.78); border-bottom-color: rgba(80, 115, 214, 0.78);">
+        <ui:Label text="유저이름" display-tooltip-when-elided="true" name="nameLabel" class="info-label" />
+        <ui:Label text="이메일" display-tooltip-when-elided="true" name="emailLabel" class="info-label" />
+        <ui:Label text="EXP" display-tooltip-when-elided="true" name="expLabel" class="info-label" />
+    </ui:VisualElement>
 </ui:UXML>

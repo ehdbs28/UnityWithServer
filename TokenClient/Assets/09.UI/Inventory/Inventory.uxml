@@ -1,0 +1,40 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Item" src="project://database/Assets/09.UI/Inventory/Item.uxml?fileID=9197481963319205126&amp;guid=8f67f4892c3714874ab0a046c9cd3fb2&amp;type=3#Item" />
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=4ace4ee7f51aa4fa5bd830b8b61115b0&amp;type=3#Common" />
+    <ui:VisualElement name="InventoryBody" class="window fade">
+        <ui:VisualElement name="Header">
+            <ui:Label text="인벤토리" display-tooltip-when-elided="true" style="font-size: 40px; -unity-text-align: upper-center; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 1px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BodyContent" style="width: 800px; height: 320px; background-image: url(&apos;project://database/Assets/04.Sprites/scifi_inventory01.png?fileID=21300000&amp;guid=66efa40d62584c54597d996254a02fc2&amp;type=3#scifi_inventory01&apos;); -unity-slice-left: 14; -unity-slice-top: 14; -unity-slice-right: 14; -unity-slice-bottom: 14; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 10px; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+            <ui:VisualElement name="slot" class="slot">
+                <ui:Instance template="Item" name="Item" />
+            </ui:VisualElement>
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+            <ui:VisualElement name="slot" class="slot" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

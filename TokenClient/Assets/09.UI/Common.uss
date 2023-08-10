@@ -45,14 +45,59 @@
 }
 
 .btn.red {
-    background-color: rgba(209, 44, 44, 255);
+    background-color: rgb(209, 44, 44);
+    border-left-color: rgb(190, 0, 0);
+    border-right-color: rgb(190, 0, 0);
+    border-top-color: rgb(190, 0, 0);
+    border-bottom-color: rgb(190, 0, 0);
 }
 
 .btn.red:hover {
-    background-color: rgba(248, 55, 55, 255);
+    background-color: rgb(248, 55, 55);
 }
 
 .unity-text-field > Label {
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
     font-size: 14px;
+}
+
+.widthzero {
+    width: 0;
+}
+
+.info-label {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+
+.slot {
+    width: 80px;
+    height: 80px;
+    background-image: url('project://database/Assets/04.Sprites/scifi_inventory01_box.png?fileID=21300000&guid=00b964a71c6f0ae4f8f206d5ca376dd4&type=3#scifi_inventory01_box');
+    -unity-slice-left: 13;
+    -unity-slice-top: 13;
+    -unity-slice-right: 13;
+    -unity-slice-bottom: 13;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot:hover {
+    background-image: url('project://database/Assets/04.Sprites/scifi_inventory02_box_select01.png?fileID=21300000&guid=e7585f30aa72296478490edd0816f72a&type=3#scifi_inventory02_box_select01');
+    -unity-slice-left: 13;
+    -unity-slice-top: 13;
+    -unity-slice-right: 13;
+    -unity-slice-bottom: 13;
+}
+
+.item {
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
 }

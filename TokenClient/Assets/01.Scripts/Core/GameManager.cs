@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] 
     private int _port;
+    
+    public const string TokenKey = "token";
+    public string Token { get; private set; }
 
     private void Awake()
     {
@@ -23,30 +26,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         NetworkManager.Instance = new NetworkManager(_host, _port.ToString());
+        UpdateToken();
     }
 
-    #region 디버그 코드
-    private void Update()
+    public void UpdateToken()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        Token = PlayerPrefs.GetString(TokenKey, string.Empty);
+        if (!string.IsNullOrEmpty(Token))
         {
-            NetworkManager.Instance.GetRequest("lunch", "?date-20230704", (type, message) =>
-            {
-                if (type == MessageType.SUCCESS)
-                {
-                    LunchVO lunch = JsonUtility.FromJson<LunchVO>(message);
-
-                    foreach (string menu in lunch.menus)
-                    {
-                        Debug.Log(menu);
-                    }
-                }
-                else
-                {
-                    Debug.LogError(message);
-                }
-            });
+            NetworkManager.Instance.DoAuth();
         }
     }
-    #endregion
+
+    public void DistroyToken()
+    {
+        PlayerPrefs.DeleteKey(TokenKey);
+        Token = string.Empty;
+    }
 }

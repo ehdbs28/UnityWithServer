@@ -28,8 +28,17 @@ public class LoginUI : WindowUI
         
         NetworkManager.Instance.PostRequest("user/login", loginDto, (type, json) =>
         {
-            Debug.Log(type);
-            Debug.Log(json);
+            if (type == MessageType.SUCCESS)
+            {
+                TokenResponseDTO dto = JsonUtility.FromJson<TokenResponseDTO>(json);
+                PlayerPrefs.SetString(GameManager.TokenKey, dto.token);
+                Close();
+                GameManager.Instance.UpdateToken();
+            }
+            else
+            {
+                UIController.Instance.MessageSystem.AddMessage(json, 3f);
+            }
         });
     }
     

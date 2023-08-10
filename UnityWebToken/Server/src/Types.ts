@@ -9,3 +9,17 @@ export interface ResponseMSG{
     message :string,
     color?: "#000"
 }
+
+export interface UserVO{
+    id :number,
+    email :string,
+    exp :number,
+    name :string
+}
+
+export interface TokenUser{
+    id :number,
+    email :string,
+    xp :number,
+    name :string
+}

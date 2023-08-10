@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=4ace4ee7f51aa4fa5bd830b8b61115b0&amp;type=3#Common" />
+    <ui:VisualElement name="Item" class="item">
+        <ui:VisualElement name="Sprite" style="width: 64px; height: 64px; background-image: url(&apos;project://database/Assets/04.Sprites/%231%20-%20Transparent%20Icons.png?fileID=-1767225835&amp;guid=dea508c41d705d34594e14ad05ead033&amp;type=3#1 - Transparent Icons_103&apos;);" />
+        <ui:Label text="10" display-tooltip-when-elided="true" name="CountLabel" style="position: absolute; bottom: 10px; right: 10px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; color: rgba(255, 255, 255, 255); font-size: 25px; -unity-text-outline-color: rgba(0, 0, 0, 255); -unity-text-outline-width: 1px;" />
+    </ui:VisualElement>
+</ui:UXML>

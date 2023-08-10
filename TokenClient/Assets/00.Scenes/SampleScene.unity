@@ -462,6 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lunchUIAsset: {fileID: 9197481963319205126, guid: f5d4ed7513cfc46a399288b5796a958a, type: 3}
   _loginUIAsset: {fileID: 9197481963319205126, guid: b2d0222a04e364b54ad240d72f60fe35, type: 3}
+  _inventoryUIAsset: {fileID: 9197481963319205126, guid: 6b820bdfedebc485b987e5970303d6fa, type: 3}
+  _itemUIAsset: {fileID: 9197481963319205126, guid: 8f67f4892c3714874ab0a046c9cd3fb2, type: 3}
 --- !u!114 &2000666460
 MonoBehaviour:
   m_ObjectHideFlags: 0

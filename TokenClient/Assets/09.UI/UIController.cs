@@ -2,20 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public enum Windows
 {
     Lunch = 1,
     Login = 2,
+    Inventory = 3,
 }
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance = null;
 
+    private VisualElement _root;
+
     private UIDocument _uiDocument;
     private VisualElement _contentParent;
+
+    private Button _loginBtn;
+    
+    private UserInfoPanel _userInfoPanel;
     
     private MessageSystem _messageSystem;
     public MessageSystem MessageSystem => _messageSystem;
@@ -25,6 +33,12 @@ public class UIController : MonoBehaviour
     
     [SerializeField]
     private VisualTreeAsset _loginUIAsset;
+
+    [SerializeField] 
+    private VisualTreeAsset _inventoryUIAsset;
+
+    [SerializeField] 
+    private VisualTreeAsset _itemUIAsset;
 
     private Dictionary<Windows, WindowUI> _windowDictionary = new Dictionary<Windows, WindowUI>();
 
@@ -41,19 +55,27 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        var root = _uiDocument.rootVisualElement;
+        _root = _uiDocument.rootVisualElement;
         
-        Button lunchBtn = root.Q<Button>("LunchBtn");
+        Button lunchBtn = _root.Q<Button>("LunchBtn");
         lunchBtn.RegisterCallback<ClickEvent>(OnOpenLunchHandle);
 
-        Button loginBtn = root.Q<Button>("LoginBtn");
-        loginBtn.RegisterCallback<ClickEvent>(OnOpenLoginHandle);
+        _loginBtn = _root.Q<Button>("LoginBtn");
+        _loginBtn.RegisterCallback<ClickEvent>(OnOpenLoginHandle);
 
-        _contentParent = root.Q("Content");
-        var messageContainer = root.Q("MessageContainer");
+        Button invenBtn = _root.Q<Button>("InventoryBtn");
+        invenBtn.RegisterCallback<ClickEvent>(OnOpenInventoryHandle);
+
+        var userInfoElement = _root.Q<VisualElement>("UserInfoPanel");
+        var userPopElement = _root.Q<VisualElement>("UserPopOver");
+        _userInfoPanel = new UserInfoPanel(userInfoElement, userPopElement, OnLogoutHandle);
+
+        _contentParent = _root.Q("Content");
+        var messageContainer = _root.Q("MessageContainer");
         _messageSystem.SetContainer(messageContainer);
         
         #region add Window
+        
         _windowDictionary.Clear();
         
         // lunch Ui 추가
@@ -67,6 +89,13 @@ public class UIController : MonoBehaviour
         loginRoot = loginRoot.Q("LoginWindow");
         _contentParent.Add(loginRoot);
         _windowDictionary.Add(Windows.Login, new LoginUI(loginRoot));
+        
+        // inventory UI 추가
+        VisualElement inventoryRoot = _inventoryUIAsset.Instantiate();
+        inventoryRoot = inventoryRoot.Q("InventoryBody");
+        _contentParent.Add(inventoryRoot);
+        _windowDictionary.Add(Windows.Inventory, new InventoryUI(inventoryRoot, _itemUIAsset));
+        
         #endregion
     }
 
@@ -96,5 +125,33 @@ public class UIController : MonoBehaviour
             
             pair.Value.Close();
         }
+    }
+
+    private void OnOpenInventoryHandle(ClickEvent evt)
+    {
+        foreach (var pair in _windowDictionary)
+        {
+            if (pair.Key == Windows.Inventory)
+            {
+                pair.Value.Open();
+                continue;
+            }
+            
+            pair.Value.Close();
+        }
+    }
+
+    public void SetUserInfo(UserVO user)
+    {
+        _loginBtn.style.display = DisplayStyle.None;
+        _userInfoPanel.Show(true);
+        _userInfoPanel.User = user;
+    }
+
+    public void OnLogoutHandle(ClickEvent e)
+    {
+        GameManager.Instance.DistroyToken();
+        _loginBtn.style.display = DisplayStyle.Flex;
+        _userInfoPanel.Show(false);
     }
 }
