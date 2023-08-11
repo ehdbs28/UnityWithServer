@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=4ace4ee7f51aa4fa5bd830b8b61115b0&amp;type=3#Common" />
+    <ui:VisualElement name="RankContainer" class="window fade" style="width: 800px; height: 400px; background-color: rgba(245, 245, 245, 0.59); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+        <ui:VisualElement name="TobBar" style="flex-grow: 2.5; flex-shrink: 0; align-items: center; justify-content: center;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="scoreLabel" style="width: 100%; height: 50%; font-size: 80px; color: rgb(0, 0, 0); -unity-font-style: bold; -unity-text-align: middle-center;" />
+            <ui:TextField picking-mode="Ignore" name="memoInput" style="width: 500px; height: 80px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Bottom" style="flex-grow: 0.5; flex-shrink: 0; flex-direction: row; align-items: center; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.2);">
+            <ui:Button text="등록" display-tooltip-when-elided="true" name="registerBtn" class="btn" />
+            <ui:Button text="취소" display-tooltip-when-elided="true" name="cancleBtn" class="btn red" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

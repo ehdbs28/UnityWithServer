@@ -23,3 +23,20 @@ export interface TokenUser{
     xp :number,
     name :string
 }
+
+export interface ItemVO{
+    itemCode :number,
+    count :number,
+    slotNumber :number
+}
+
+export interface InventoryVO{
+    count :number,
+    list :ItemVO[],
+}
+
+export interface rankVO{
+    user_name: string,
+    score: number,
+    memo: string
+}

@@ -5,6 +5,8 @@ import nunjucks from "nunjucks";
 import { lunchRouter } from "./LunchRouter";
 import { userRouter } from "./UserRouter";
 import { tokenChecker } from "./MyJWT";
+import { InventoryRouter } from "./InventoryRouter";
+import { RankRouter } from "./RankRouter";
 
 // 익스프레스 어플리케이션 = 웹서버!
 let app :Application = express();
@@ -29,6 +31,10 @@ app.use(tokenChecker);
 app.use(lunchRouter);
 // 유저관련 라우터
 app.use(userRouter);
+// 인벤토리 라우터
+app.use(InventoryRouter);
+// 랭킹 라우터
+app.use(RankRouter);
 
 app.listen(3000, () => {
     console.log(

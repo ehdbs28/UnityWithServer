@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +9,16 @@ public enum Windows
     Lunch = 1,
     Login = 2,
     Inventory = 3,
+    Rank = 4,
+    Ranking = 5,
 }
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance = null;
 
+    public List<ItemSO> _itemList = new List<ItemSO>();
+    
     private VisualElement _root;
 
     private UIDocument _uiDocument;
@@ -39,6 +42,13 @@ public class UIController : MonoBehaviour
 
     [SerializeField] 
     private VisualTreeAsset _itemUIAsset;
+
+    [SerializeField] private VisualTreeAsset _rankRegisterAsset;
+    [SerializeField] private VisualTreeAsset _rankingAsset;
+
+    [SerializeField] private VisualTreeAsset _rankItem;
+
+    private Label _scoreLabel;
 
     private Dictionary<Windows, WindowUI> _windowDictionary = new Dictionary<Windows, WindowUI>();
 
@@ -65,6 +75,20 @@ public class UIController : MonoBehaviour
 
         Button invenBtn = _root.Q<Button>("InventoryBtn");
         invenBtn.RegisterCallback<ClickEvent>(OnOpenInventoryHandle);
+        
+        _root.Q<Button>("RankBtn").RegisterCallback<ClickEvent>(e =>
+        {
+            foreach (var pair in _windowDictionary)
+            {
+                if (pair.Key == Windows.Ranking)
+                {
+                    pair.Value.Open();
+                    continue;
+                }
+            
+                pair.Value.Close();
+            }
+        });
 
         var userInfoElement = _root.Q<VisualElement>("UserInfoPanel");
         var userPopElement = _root.Q<VisualElement>("UserPopOver");
@@ -73,6 +97,12 @@ public class UIController : MonoBehaviour
         _contentParent = _root.Q("Content");
         var messageContainer = _root.Q("MessageContainer");
         _messageSystem.SetContainer(messageContainer);
+
+        _scoreLabel = _root.Q<Label>("scoreLabel");
+        TimeController.Instance.TimeEvent += (time) =>
+        {
+            _scoreLabel.text = time.ToString("D3");
+        };
         
         #region add Window
         
@@ -96,7 +126,27 @@ public class UIController : MonoBehaviour
         _contentParent.Add(inventoryRoot);
         _windowDictionary.Add(Windows.Inventory, new InventoryUI(inventoryRoot, _itemUIAsset));
         
+        VisualElement rankRoot = _rankRegisterAsset.Instantiate();
+        rankRoot = rankRoot.Q("RankContainer");
+        _contentParent.Add(rankRoot);
+        _windowDictionary.Add(Windows.Rank, new RankRegister(rankRoot));
+        
+        VisualElement rankingRoot = _rankingAsset.Instantiate();
+        rankingRoot = rankingRoot.Q("rankingContainer");
+        _contentParent.Add(rankingRoot);
+        _windowDictionary.Add(Windows.Ranking, new Ranking(rankingRoot, _rankItem));
+        
         #endregion
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            int idx = Random.Range(0, _itemList.Count);
+            var inventoryUI = _windowDictionary[Windows.Inventory] as InventoryUI;
+            inventoryUI.AddItem(_itemList[idx], 3);
+        }
     }
 
     private void OnOpenLunchHandle(ClickEvent evt)
@@ -153,5 +203,13 @@ public class UIController : MonoBehaviour
         GameManager.Instance.DistroyToken();
         _loginBtn.style.display = DisplayStyle.Flex;
         _userInfoPanel.Show(false);
+    }
+
+    public void GameOver()
+    {
+        _windowDictionary[Windows.Rank].Open();
+        RankRegister rank = _windowDictionary[Windows.Rank] as RankRegister;
+        rank.Score = TimeController.Instance.Time;
+        rank.userName = _userInfoPanel.User.name;
     }
 }

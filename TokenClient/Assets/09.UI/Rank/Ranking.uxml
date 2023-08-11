@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=4ace4ee7f51aa4fa5bd830b8b61115b0&amp;type=3#Common" />
+    <ui:VisualElement name="rankingContainer" class="window fade" style="width: 450px; height: 300px; background-color: rgba(255, 255, 255, 0.59); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+        <ui:VisualElement name="topBar" style="height: 30px; background-color: rgba(0, 0, 0, 0.39); padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 10px; border-bottom-left-radius: 0; border-top-right-radius: 10px; border-bottom-right-radius: 0;">
+            <ui:Label text="RANKING" display-tooltip-when-elided="true" name="title" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="contents" style="flex-grow: 1;">
+            <ui:ScrollView name="ranks" style="flex-grow: 1; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom" style="flex-basis: 30px; flex-direction: row; justify-content: flex-end; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+            <ui:Button text="Close" display-tooltip-when-elided="true" name="closeBtn" class="btn red" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

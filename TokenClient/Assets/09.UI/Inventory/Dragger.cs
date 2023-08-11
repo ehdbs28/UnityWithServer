@@ -81,9 +81,6 @@ public class Dragger : MouseManipulator
         target.style.left = 0;
         target.style.top = 0;
         
-        target.RemoveFromHierarchy();
-        _beforeSlot.Add(target);
-
-        // 이녀석을 다시 relative바꿔주고 DropCallback을 콜
+        _dropCallback?.Invoke(e, target, _beforeSlot);
     }
 }
